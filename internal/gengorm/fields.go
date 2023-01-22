@@ -89,6 +89,9 @@ func (f *Field) tagVals() (values []string) {
 	if col := f.opts.Column; col != "" {
 		values = append(values, "column:"+col)
 	}
+	if f.opts.Size > 0 {
+		values = append(values, fmt.Sprintf("size:%d", f.opts.Size))
+	}
 	if f.opts.NotNull {
 		values = append(values, "not null")
 	}

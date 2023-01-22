@@ -101,8 +101,7 @@ message FieldOptions {
   reserved 2;
 
   // Data size, or length.
-  reserved "size";
-  reserved 3;
+  uint64 size = 3;
 
   // The number of digits on both sides of the decimal point.
   reserved "precision";
