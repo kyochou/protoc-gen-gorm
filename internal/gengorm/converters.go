@@ -12,10 +12,10 @@ func (m *Message) genConverters() {
 
 func (m *Message) genModelAsProto() {
 	m.P(Comment(" AsProto converts a %s to its protobuf representation.", m.ModelName()),
-		"func (m *", m.ModelName(), ") AsProto() (*", m.proto.GoIdent.GoName, ", error) {")
+		"func (m *", m.ModelName(), ") AsProto() (*", m.proto.GoIdent.GoName, ") {")
 	m.P("x := new(", m.proto.GoIdent.GoName, ")")
 	m.genModelAsProtoFields()
-	m.P("return x, nil")
+	m.P("return x")
 	m.P("}") // func
 	m.P()
 }
@@ -74,10 +74,10 @@ func (f *Field) genEnumAsProto() {
 
 func (m *Message) genAsModel() {
 	m.P(Comment(" AsModel converts a %s to its GORM model.", m.proto.GoIdent.GoName),
-		"func (x *", m.proto.GoIdent.GoName, ") AsModel() (*", m.ModelName(), ", error) {")
+		"func (x *", m.proto.GoIdent.GoName, ") AsModel() (*", m.ModelName(), ") {")
 	m.P("m := new(", m.ModelName(), ")")
 	m.genConvertAsModelFields()
-	m.P("return m, nil")
+	m.P("return m")
 	m.P("}")
 	m.P()
 }
