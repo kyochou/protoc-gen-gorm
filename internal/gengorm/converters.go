@@ -34,8 +34,6 @@ func (f *Field) genConvertAsProto() {
 		f.genEnumAsProto()
 	case f.types.isTimestamp():
 		f.genConvertTimeAsProto()
-	case f.types.Pointer:
-		f.P("x.", f.Name(), " = *m.", f.Name())
 	default:
 		f.P("x.", f.Name(), " = m.", f.Name())
 	}
@@ -96,8 +94,6 @@ func (f *Field) genConvertAsModel() {
 		f.genEnumAsModel()
 	case f.types.isTimestamp():
 		f.genConvertTimestampAsModel()
-	case f.types.Pointer:
-		f.P("m.", f.Name(), " = *x.", f.Name())
 	default:
 		f.P("m.", f.Name(), " = x.", f.Name())
 	}

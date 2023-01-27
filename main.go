@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"google.golang.org/protobuf/types/pluginpb"
 	"os"
 	"path/filepath"
 
@@ -38,6 +39,7 @@ func main() {
 		// Calls `flags.Set(param, value)` for each from `--gorm_out=<param1>=<value1>,...`.
 		ParamFunc: flags.Set,
 	}.Run(func(plugin *protogen.Plugin) error {
+		plugin.SupportedFeatures = uint64(pluginpb.CodeGeneratorResponse_FEATURE_PROTO3_OPTIONAL)
 		for _, f := range plugin.Files {
 			if f.Generate {
 				if err := gengorm.GenerateFile(flags, plugin, f); err != nil {

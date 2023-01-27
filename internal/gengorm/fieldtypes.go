@@ -38,6 +38,7 @@ func (t *FieldType) init() error {
 		return nil
 	}
 
+	t.Pointer = t.field.proto.Desc.HasOptionalKeyword()
 	switch t.field.proto.Desc.Kind() {
 	case protoreflect.BoolKind:
 		t.Gorm.GoName = "bool"
